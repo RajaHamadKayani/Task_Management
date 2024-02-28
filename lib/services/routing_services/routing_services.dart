@@ -16,4 +16,7 @@ class RoutingServices extends GetxController {
   void goToSplash() {
     Get.toNamed('/splash');
   }
+   void goToEmailSendForgetPassword() {
+    Get.toNamed('/emailSendForgetPassword');
+  }
 }
