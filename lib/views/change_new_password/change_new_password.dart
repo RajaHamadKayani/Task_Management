@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:task_management_system/utils/app_styles/app_styles.dart';
 import 'package:task_management_system/view_models/controllers/change_new_password/change_new_password.dart';
+import 'package:task_management_system/views/success_forget_password/success_forget_password.dart';
 import 'package:task_management_system/views/widgets/container_widget/container_widget.dart';
 import 'package:task_management_system/views/widgets/text_form_field_widget/text_form_field_widget.dart';
 import 'package:task_management_system/views/widgets/text_widget/text_widget.dart';
@@ -33,6 +34,10 @@ class _ChangeNewPasswordState extends State<ChangeNewPassword> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+               IconButton(onPressed: (){
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const SuccessForgetPassword()));
+               }, icon:const  Icon(Icons.arrow_back)),
+            const SizedBox(height: 20,),
               TextWidget(
                 title: "Change New Password",
                 style: AppStyles.boldTextStyle(

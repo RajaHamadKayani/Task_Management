@@ -241,8 +241,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
- Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const SignInScreen()));                      },
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignInScreen()));
+                      },
                       child: RichText(
                           text: TextSpan(children: [
                         TextSpan(

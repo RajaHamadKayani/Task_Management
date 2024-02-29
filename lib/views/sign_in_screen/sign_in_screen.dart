@@ -1,8 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:task_management_system/services/routing_services/routing_services.dart';
 import 'package:task_management_system/utils/app_styles/app_styles.dart';
+import 'package:task_management_system/view_models/controllers/continue_with_facebook/continue_with_facebook.dart';
+import 'package:task_management_system/view_models/controllers/continue_with_google/continue_with_google.dart';
 import 'package:task_management_system/view_models/controllers/sign_in_controller/sign_in_controller.dart';
 import 'package:task_management_system/views/email_send_forget_password/email_send_forget_password.dart';
 import 'package:task_management_system/views/sign_up_screen/sign_up_screen.dart';
@@ -21,9 +25,10 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  GoogleAuth googleAuth = GoogleAuth();
   SignInController signInController = Get.put(SignInController());
   RoutingServices routingServices = Get.put(RoutingServices());
+  FacebookAuthService facebookAuthService = FacebookAuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,6 +159,66 @@ class _SignInScreenState extends State<SignInScreen> {
                   const SizedBox(
                     height: 20,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TextWidget(
+                        title: "Or continue with",
+                        style: AppStyles.boldTextStyle(
+                            color: Colors.orange,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          final User? user =
+                              await googleAuth.signInWithGoogle();
+
+                          if (user != null) {
+                            if (kDebugMode) {
+                              print(
+                                  'Signed in with Google: ${user.displayName}');
+                            }
+                          } else {
+                            if (kDebugMode) {
+                              print('Google sign-in failed.');
+                            }
+                          }
+                        },
+                        child: Image.asset("assets/images/google_logo_1.png"),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      GestureDetector(
+                          onTap: () async {
+                            UserCredential? userCredential =
+                                await facebookAuthService.signInWithFacebook();
+
+                            if (userCredential != null) {
+                              // Authentication successful, you can navigate or perform actions
+                              if (kDebugMode) {
+                                print(
+                                    'User signed in: ${userCredential.user?.displayName}');
+                              }
+                            } else {
+                              // Authentication failed or canceled
+                              if (kDebugMode) {
+                                print('Facebook authentication failed');
+                              }
+                            }
+                          },
+                          child:
+                              Image.asset("assets/images/facebook_logo_1.png"))
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushReplacement(
@@ -165,7 +230,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: TextWidget(
                       title: "Forget Password?",
                       style: AppStyles.boldTextStyle(
-                          color: Colors.teal, fontSize: 16),
+                          color: Colors.orange, fontSize: 16),
                     ),
                   )
                 ],
