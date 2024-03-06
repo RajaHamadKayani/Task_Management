@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:task_management_system/services/routing_services/routing_services.dart';
 import 'package:task_management_system/utils/app_styles/app_styles.dart';
 import 'package:task_management_system/view_models/controllers/email_send_forget_password_controller/email_send_forget_password_controller.dart';
-import 'package:task_management_system/views/sign_in_screen/sign_in_screen.dart';
+import 'package:task_management_system/views/login_view/login_view.dart';
 import 'package:task_management_system/views/widgets/container_widget/container_widget.dart';
 import 'package:task_management_system/views/widgets/text_form_field_widget/text_form_field_widget.dart';
 import 'package:task_management_system/views/widgets/text_widget/text_widget.dart';
@@ -42,7 +42,7 @@ class _EmailSendForgetPasswordState extends State<EmailSendForgetPassword> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SignInScreen()));
+                              builder: (context) => const LoginView()));
                     },
                     icon: const Icon(Icons.arrow_back)),
               ),
@@ -124,7 +124,7 @@ class _EmailSendForgetPasswordState extends State<EmailSendForgetPassword> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignInScreen()));
+                                builder: (context) => const LoginView()));
                       },
                       child: RichText(
                           text: TextSpan(children: [

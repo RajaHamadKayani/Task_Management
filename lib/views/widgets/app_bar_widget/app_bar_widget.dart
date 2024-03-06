@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AppBarWdiget extends StatelessWidget implements PreferredSizeWidget {
   String? titl;
-  IconData? leadingIcon;
+  Widget? leadingIcon;
   IconData? trailingIcon;
   CallbackAction? callbackAction;
   TextStyle? textStyle;
@@ -22,25 +23,17 @@ class AppBarWdiget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: const Color(0xff00CEC9),
       centerTitle: false,
       title: Text(
         titl ?? "",
         style: textStyle,
       ),
-      backgroundColor: Colors.teal,
-      leading: IconButton(
-        onPressed: () {
-          callbackAction!;
-        },
-        icon: Icon(
-          leadingIcon ?? null,
-          color: Colors.orange,
-        ),
-      ),
+      leading: leadingIcon,
       actions: [
         Icon(
           trailingIcon ?? null,
-          color: Colors.orange,
+          color: Colors.black,
         ),
       ],
     );

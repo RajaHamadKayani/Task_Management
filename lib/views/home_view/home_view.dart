@@ -11,6 +11,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  int currentIndex = 0;
+  List<Widget> list = [
+    const HomeView(),
+    const ProfileView(),
+    const SettingsView(),
+    const MenuView()
+  ];
   @override
   void initState() {
     super.initState();
@@ -22,10 +29,101 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: list[currentIndex],
+      
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+          onTap: (int index) {
+            setState(() {
+              index == currentIndex;
+            });
+          },
+          backgroundColor: Colors.teal,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                color: Colors.black,
+              ),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+                color: Colors.black,
+              ),
+              label: "Home",
+              backgroundColor: Colors.black,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.settings,
+                color: Colors.black,
+              ),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              label: "Home",
+            )
+          ]),
+    );
+  }
+}
+
+class SettingsView extends StatefulWidget {
+  const SettingsView({super.key});
+
+  @override
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<SettingsView> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: Center(
-        child: TextWidget(
-          title: "HomeView",
-        ),
+        child: Text("Settings"),
+      ),
+    );
+  }
+}
+
+class MenuView extends StatefulWidget {
+  const MenuView({super.key});
+
+  @override
+  State<MenuView> createState() => _MenuViewState();
+}
+
+class _MenuViewState extends State<MenuView> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text("Menu"),
+      ),
+    );
+  }
+}
+
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text("Profile"),
       ),
     );
   }

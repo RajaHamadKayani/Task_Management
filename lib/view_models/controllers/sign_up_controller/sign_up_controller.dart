@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:task_management_system/services/routing_services/routing_services.dart';
-import 'package:task_management_system/views/sign_in_screen/sign_in_screen.dart';
+import 'package:task_management_system/views/login_view/login_view.dart';
 
 class SignUpController extends GetxController {
   RoutingServices routingServices = Get.put(RoutingServices());
@@ -26,7 +26,7 @@ class SignUpController extends GetxController {
           colorText: Colors.orange,
           snackPosition: SnackPosition.BOTTOM);
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const SignInScreen()));
+          MaterialPageRoute(builder: (context) => const LoginView()));
       await firebaseFirestore
           .collection('users')
           .doc(userCredential.user?.uid)

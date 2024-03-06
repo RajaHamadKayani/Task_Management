@@ -7,9 +7,8 @@ import 'package:task_management_system/view_models/controllers/sign_up_controlle
 import 'package:task_management_system/view_models/controllers/splash_screen_controller/splash_screen_controller.dart';
 import 'package:task_management_system/views/change_new_password/change_new_password.dart';
 import 'package:task_management_system/views/email_send_forget_password/email_send_forget_password.dart';
-import 'package:task_management_system/views/sign_in_screen/sign_in_screen.dart';
-import 'package:task_management_system/views/sign_up_screen/sign_up_screen.dart';
-import 'package:task_management_system/views/splash_screen/splash_screen.dart';
+import 'package:task_management_system/views/splash_view/splash_view.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-     home:const  SplashScreen(),
+     home:const  SplashView(),
     );
   }
 }
