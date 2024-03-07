@@ -1,130 +1,119 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:task_management_system/view_models/user_profile_data/user_profile_data.dart';
-import 'package:task_management_system/views/widgets/text_widget/text_widget.dart';
+import 'package:get/get.dart';
+import 'package:task_management_system/utils/app_styles/app_styles.dart';
+import 'package:task_management_system/utils/responsive_layout/responsive_layout.dart';
+import 'package:task_management_system/views/home_page/home_page.dart';
+import 'package:task_management_system/views/login_view/login_view.dart';
+import 'package:task_management_system/views/widgets/app_bar_widget/app_bar_widget.dart';
+import 'package:task_management_system/views/widgets/drawer_widget/drawer_widget.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
-
   @override
-  State<HomeView> createState() => _HomeViewState();
+  _HomeViewState createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-  int currentIndex = 0;
-  List<Widget> list = [
-    const HomeView(),
-    const ProfileView(),
-    const SettingsView(),
-    const MenuView()
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = [
+    HomeView(),
+    PersonPage(),
+    SettingsPage(),
+    MenuPage(),
   ];
-  @override
-  void initState() {
-    super.initState();
-    if (kDebugMode) {
-      print("Password of registered user: ${UserDataService.userPassword}");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: list[currentIndex],
-      
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        type: BottomNavigationBarType.fixed,
-          onTap: (int index) {
-            setState(() {
-              index == currentIndex;
-            });
+      key: scaffoldKey,
+      appBar: AppBarWdiget(
+        titl: "Mazlume Karbala",
+        leadingIcon: IconButton(
+          onPressed: () {
+            scaffoldKey.currentState?.openDrawer();
           },
-          backgroundColor: Colors.teal,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: Colors.black,
-              ),
-              label: "Home",
+          icon: Icon(
+            Icons.menu,
+            color: Colors.black,
+          ),
+        ),
+        textStyle: AppStyles.boldTextStyle(color: Colors.black),
+      ),
+      drawer: !ResponsiveLayout.isDesktop(context) &&
+              !ResponsiveLayout.isTablet(context)
+          ? const MyDrawerWidget()
+          : null,
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.teal,
+        selectedLabelStyle: AppStyles.boldTextStyle(color: Colors.black),
+        unselectedLabelStyle: AppStyles.boldTextStyle(color: Colors.black),
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Colors.black,
-              ),
-              label: "Home",
-              backgroundColor: Colors.black,
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.settings,
-                color: Colors.black,
-              ),
-              label: "Home",
+            label: 'Person',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.menu,
-                color: Colors.black,
-              ),
-              label: "Home",
-            )
-          ]),
+            label: 'Settings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.menu,
+            ),
+            label: 'Menu',
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+}
+
+class PersonPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Person Page'),
     );
   }
 }
 
-class SettingsView extends StatefulWidget {
-  const SettingsView({super.key});
-
-  @override
-  State<SettingsView> createState() => _SettingsViewState();
-}
-
-class _SettingsViewState extends State<SettingsView> {
+class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("Settings"),
-      ),
+    return Center(
+      child: Text('Settings Page'),
     );
   }
 }
 
-class MenuView extends StatefulWidget {
-  const MenuView({super.key});
-
-  @override
-  State<MenuView> createState() => _MenuViewState();
-}
-
-class _MenuViewState extends State<MenuView> {
+class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("Menu"),
-      ),
-    );
-  }
-}
-
-class ProfileView extends StatefulWidget {
-  const ProfileView({super.key});
-
-  @override
-  State<ProfileView> createState() => _ProfileViewState();
-}
-
-class _ProfileViewState extends State<ProfileView> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("Profile"),
-      ),
+    return Center(
+      child: Text('Menu Page'),
     );
   }
 }

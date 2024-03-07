@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:task_management_system/utils/app_styles/app_styles.dart';
 import 'package:task_management_system/utils/responsive_layout/responsive_layout.dart';
 import 'package:task_management_system/view_models/controllers/sign_up_controller/sign_up_controller.dart';
@@ -25,6 +29,105 @@ class _SignUpViewState extends State<SignUpView> {
   TextEditingController controllerFirstName = TextEditingController();
   TextEditingController controllerPhone = TextEditingController();
   TextEditingController controllerAddress = TextEditingController();
+  dialogFunction(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            "Are you sure want to delete Booking request?",
+            style: GoogleFonts.poppins(color: Colors.black, fontSize: 18),
+          ),
+          content: Container(
+            height: MediaQuery.of(context).size.height *
+                0.3, // Set the height to half of the screen
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      _pickGalleryImage();
+                      Navigator.pop(context);
+                    },
+                    child: ContainerWidget(
+                      width: 100,
+                      height: 40,
+                      borderRadius: 12,
+                      color: 0xFFFF0000,
+                      widget: Center(
+                        child: Text(
+                          "Gallery",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _pickCameraImage();
+                      Navigator.pop(context);
+                    },
+                    child: ContainerWidget(
+                      width: 100,
+                      height: 40,
+                      borderRadius: 12,
+                      color: 0xff0C3C43,
+                      widget: Center(
+                        child: Text(
+                          "Camera",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+    XFile? _image;
+
+
+  Future<void> _pickGalleryImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = pickedFile;
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future<void> _pickCameraImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = pickedFile;
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +266,45 @@ class _SignUpViewState extends State<SignUpView> {
               const SizedBox(
                 height: 37,
               ),
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    dialogFunction(context);
+                  },
+                  child: Container(
+                      height: !ResponsiveLayout.isMobile(context) ? 70 : 100,
+                      width: !ResponsiveLayout.isMobile(context) ? 70 : 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: const Color(0xffCDD1B8),
+                          width: 3,
+                        ),
+                      ),
+                      child: ClipOval(
+                        child: _image == null
+                            ? Center(
+                                child: Text(
+                                'Select Image',
+                                style: AppStyles.regularTextStyle(
+                                    fontSize:
+                                        !ResponsiveLayout.isMobile(context)
+                                            ? 16
+                                            : 12,
+                                    color: Colors.black),
+                              ))
+                            : Image.file(
+                                File(
+                                  _image!.path,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                      )),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               ContainerWidget(
                 height: !ResponsiveLayout.isMobile(context) ? 70 : 50,
                 width: double.infinity,
@@ -264,7 +406,8 @@ class _SignUpViewState extends State<SignUpView> {
                       controllerPassword.value.text,
                       controllerFirstName.value.text,
                       controllerPhone.value.text,
-                      controllerAddress.value.text);
+                      controllerAddress.value.text,
+                      _image?.path ??"");
                 },
                 child: ContainerWidget(
                   height: !ResponsiveLayout.isMobile(context) ? 60 : 40,

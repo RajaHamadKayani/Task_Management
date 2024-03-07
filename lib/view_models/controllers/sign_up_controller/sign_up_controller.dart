@@ -11,7 +11,7 @@ class SignUpController extends GetxController {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   void signUpMethod(BuildContext context, String email, String password,
-      String name, String phone, String address) async {
+      String name, String phone, String address, String photo) async {
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -35,7 +35,8 @@ class SignUpController extends GetxController {
         'name': name,
         'phone': phone,
         'address': address,
-        "password": password
+        "password": password,
+        "photo":photo
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -57,4 +58,5 @@ class SignUpController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
+  
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:task_management_system/utils/app_styles/app_styles.dart';
 import 'package:task_management_system/utils/responsive_layout/responsive_layout.dart';
 import 'package:task_management_system/view_models/controllers/sign_in_controller/sign_in_controller.dart';
+import 'package:task_management_system/views/email_send_forget_password/email_send_forget_password.dart';
 import 'package:task_management_system/views/launcher_page/launcher_page.dart';
 import 'package:task_management_system/views/signup_view/signu_viw.dart';
 import 'package:task_management_system/views/widgets/app_bar_widget/app_bar_widget.dart';
@@ -194,11 +195,20 @@ class _LoginViewState extends State<LoginView> {
               ),
               Align(
                 alignment: Alignment.topRight,
-                child: TextWidget(
-                  title: "Forgot your password?",
-                  style: AppStyles.regularTextStyle(
-                      fontSize: !ResponsiveLayout.isMobile(context) ? 18 : 12,
-                      fontWeight: FontWeight.w300),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const EmailSendForgetPassword()));
+                  },
+                  child: TextWidget(
+                    title: "Forgot your password?",
+                    style: AppStyles.regularTextStyle(
+                        fontSize: !ResponsiveLayout.isMobile(context) ? 18 : 12,
+                        fontWeight: FontWeight.w300),
+                  ),
                 ),
               ),
               const SizedBox(
@@ -230,31 +240,75 @@ class _LoginViewState extends State<LoginView> {
                 height: 30,
               ),
               Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUpView()));
-                  },
-                  child: RichText(
-                      text: TextSpan(children: [
-                    TextSpan(
-                        text: "Dont have an account? ",
-                        style: AppStyles.regularTextStyle(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignUpView()));
+                        },
+                        child: RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: "Dont have an account? ",
+                              style: AppStyles.regularTextStyle(
+                                  color: Colors.black,
+                                  fontSize: !ResponsiveLayout.isMobile(context)
+                                      ? 18
+                                      : 12,
+                                  fontWeight: FontWeight.w500)),
+                          TextSpan(
+                              text: "Register Now",
+                              style: AppStyles.regularTextStyle(
+                                  color: Colors.blue,
+                                  fontSize: !ResponsiveLayout.isMobile(context)
+                                      ? 18
+                                      : 12,
+                                  fontWeight: FontWeight.w500))
+                        ])),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          RichText(
+                              text: TextSpan(children: [
+                            TextSpan(
+                                text: "Continue with ",
+                                style: AppStyles.boldTextStyle(
+                                    color: Colors.black,
+                                    fontSize:
+                                        !ResponsiveLayout.isMobile(context)
+                                            ? 18
+                                            : 12,
+                                    fontWeight: FontWeight.bold)),
+                            TextSpan(
+                                text: "Phone Number",
+                                style: AppStyles.boldTextStyle(
+                                    fontSize:
+                                        !ResponsiveLayout.isMobile(context)
+                                            ? 20
+                                            : 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue)),
+                          ])),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Icon(
+                            Icons.phone,
                             color: Colors.black,
-                            fontSize:
-                                !ResponsiveLayout.isMobile(context) ? 18 : 12,
-                            fontWeight: FontWeight.w500)),
-                    TextSpan(
-                        text: "Register Now",
-                        style: AppStyles.regularTextStyle(
-                            color: Colors.blue,
-                            fontSize:
-                                !ResponsiveLayout.isMobile(context) ? 18 : 12,
-                            fontWeight: FontWeight.w500))
-                  ])),
-                ),
+                          )
+                        ],
+                      )
+                    ]),
               )
             ],
           ),
