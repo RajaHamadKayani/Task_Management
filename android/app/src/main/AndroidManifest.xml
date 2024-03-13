@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-   package="com.example.task_management_system">
+   package="com.example.calculator_4u">
     <application
-        android:label="task_management_system"
+        android:label="Calculator_4u"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
