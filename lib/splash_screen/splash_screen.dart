@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:task_management_system/login_view/login_view.dart';
 import 'package:task_management_system/utils/routes/routes_names.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,7 +17,8 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _controller;
   Future navigateToHomeScreen() async {
     Timer(const Duration(seconds: 4), () async {
-      Navigator.pushNamed(context, RouteName.homeScreen);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const LoginView()));
     });
   }
 

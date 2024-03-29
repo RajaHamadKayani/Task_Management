@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:task_management_system/home_screen/home_screen.dart';
+import 'package:task_management_system/splash_screen/splash_screen.dart';
 import 'package:task_management_system/utils/routes/route_settings.dart';
 import 'package:task_management_system/utils/routes/routes_names.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home:const  SplashScreen(),
     );
   }
 }
