@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:task_management_system/email_send_forget_password_controller/email_send_forget_password_controller.dart';
