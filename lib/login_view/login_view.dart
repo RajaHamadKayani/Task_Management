@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_management_system/email_send_forget_password/email_send_forget_password.dart';
@@ -12,7 +11,6 @@ import 'package:task_management_system/widgets/asset_image_widget/asset_image_wi
 import 'package:task_management_system/widgets/container_widget/container_widget.dart';
 import 'package:task_management_system/widgets/text_form_field_widget/text_form_field_widget.dart';
 import 'package:task_management_system/widgets/text_widget/text_widget.dart';
-
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -29,7 +27,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xffC0C0C0),
+      backgroundColor: const Color(0xff000000),
       appBar: AppBarWdiget(
         leadingIcon: IconButton(
             onPressed: () {
@@ -59,14 +57,13 @@ class _LoginViewState extends State<LoginView> {
               TextWidget(
                 title: "Login",
                 style: AppStyles.boldTextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: !ResponsiveLayout.isMobile(context) ? 40 : 30,
                     fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 31,
               ),
-             
               const SizedBox(
                 height: 37,
               ),
@@ -74,7 +71,7 @@ class _LoginViewState extends State<LoginView> {
                 child: TextWidget(
                   title: "or sign in with",
                   style: AppStyles.regularTextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: !ResponsiveLayout.isMobile(context) ? 16 : 12,
                       fontWeight: FontWeight.w300),
                 ),
@@ -178,7 +175,7 @@ class _LoginViewState extends State<LoginView> {
                           TextSpan(
                               text: "Dont have an account? ",
                               style: AppStyles.regularTextStyle(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: !ResponsiveLayout.isMobile(context)
                                       ? 18
                                       : 12,
@@ -205,7 +202,7 @@ class _LoginViewState extends State<LoginView> {
                             TextSpan(
                                 text: "Continue with ",
                                 style: AppStyles.boldTextStyle(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     fontSize:
                                         !ResponsiveLayout.isMobile(context)
                                             ? 18
@@ -226,7 +223,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           const Icon(
                             Icons.phone,
-                            color: Colors.black,
+                            color: Colors.white,
                           )
                         ],
                       )

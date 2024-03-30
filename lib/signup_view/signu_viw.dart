@@ -152,7 +152,7 @@ class _SignUpViewState extends State<SignUpView> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xffC0C0C0),
+      backgroundColor: const Color(0xff000000),
       appBar: AppBarWdiget(
         leadingIcon: IconButton(
             onPressed: () {
@@ -163,13 +163,13 @@ class _SignUpViewState extends State<SignUpView> {
             },
             icon: const Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: Colors.white,
             )),
         titl: "Travel Guide",
         textStyle: AppStyles.boldTextStyle(
           fontWeight: FontWeight.bold,
           fontSize: !ResponsiveLayout.isMobile(context) ? 25 : 20,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       body: Padding(
@@ -182,7 +182,7 @@ class _SignUpViewState extends State<SignUpView> {
               TextWidget(
                 title: "SignUp",
                 style: AppStyles.boldTextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: !ResponsiveLayout.isMobile(context) ? 40 : 30,
                     fontWeight: FontWeight.bold),
               ),
@@ -218,7 +218,7 @@ class _SignUpViewState extends State<SignUpView> {
                             TextWidget(
                               title: "Google",
                               style: AppStyles.boldTextStyle(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: !ResponsiveLayout.isMobile(context)
                                       ? 20
                                       : 15,
@@ -277,7 +277,7 @@ class _SignUpViewState extends State<SignUpView> {
                 child: TextWidget(
                   title: "or sign in with",
                   style: AppStyles.regularTextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: !ResponsiveLayout.isMobile(context) ? 16 : 12,
                       fontWeight: FontWeight.w300),
                 ),
@@ -310,7 +310,7 @@ class _SignUpViewState extends State<SignUpView> {
                                         !ResponsiveLayout.isMobile(context)
                                             ? 16
                                             : 12,
-                                    color: Colors.black),
+                                    color: Colors.white),
                               ))
                             : Image.memory(registrationImage!,
                             fit: BoxFit.cover,)

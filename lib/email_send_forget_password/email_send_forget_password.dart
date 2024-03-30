@@ -52,15 +52,15 @@ class _EmailSendForgetPasswordState extends State<EmailSendForgetPassword> {
               const SizedBox(
                 height: 20,
               ),
-              Center(
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SvgPicture.asset("assets/svgs/forget_password_bg_logo.svg"),
-                    Image.asset("assets/images/forget_password_fg_logo.png")
-                  ],
-                ),
-              ),
+              // Center(
+              //   child: Stack(
+              //     alignment: Alignment.center,
+              //     children: [
+              //       SvgPicture.asset("assets/svgs/forget_password_bg_logo.svg"),
+              //       Image.asset("assets/images/forget_password_fg_logo.png")
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 33, left: 24, right: 24),
                 child: Column(
